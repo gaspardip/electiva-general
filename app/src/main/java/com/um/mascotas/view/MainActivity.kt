@@ -1,8 +1,11 @@
-package com.um.mascotas
+package com.um.mascotas.view
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,17 +21,58 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.um.mascotas.R
+import com.um.mascotas.databinding.ActivityMainBinding
+import com.um.mascotas.view.adapters.ListItemAdapter
+import com.um.mascotas.viewmodel.PetViewModel
 
-class MainActivity : ComponentActivity() {
+
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding;
+
+    private val petViewModel: PetViewModel by viewModels();
+
+    private var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // There are no request codes
+                val petName = result.data?.getStringExtra("NEW_PET_NAME")!!
+                val petDescription = result.data?.getStringExtra("NEW_PET_DESCRIPTION")!!
+                val petAge = result.data?.getStringExtra("NEW_PET_AGE")!!
+                val petGiver = result.data?.getStringExtra("NEW_PET_GIVER")!!
+
+                    petViewModel.addPetFromView(petName, petDescription, petAge, petGiver)
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            MyApp()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        binding.floatingActionButton.setOnClickListener {
+            petViewModel.addRandomPet()
+
+            val intent = Intent(this, AddPet::class.java)
+            resultLauncher.launch(intent);
         }
+
+        petViewModel.petModel.observe(this, Observer { currentPets ->
+            val adapter = ListItemAdapter(petViewModel, currentPets)
+            recyclerView.adapter = adapter
+        });
     }
+
 }
 
-@Composable
+// check bottom
+/*@Composable
 fun MyApp() {
     MaterialTheme(colorScheme = darkColorScheme()) {
         MyMinimalScaffold()
@@ -102,3 +146,4 @@ fun MyMinimalScaffold() {
 fun MyMinimalScaffoldPreview() {
     MyApp()
 }
+*/

@@ -13,6 +13,9 @@ androidx-compose-material3 = "1.3.0-rc01"
 androidx-compose-material3-adaptive = "1.0.0-rc01"
 androidx-activity-compose = "1.9.1"
 androidx-compose-latest = "1.7.0-rc01"
+recyclerview = "1.3.2"
+cardview = "1.0.0"
+material = "1.12.0"
 
 
 [libraries]
@@ -36,6 +39,12 @@ androidx-compose-ui = { module = "androidx.compose.ui:ui" , version.ref = "andro
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+
+androidx-view-model = { group = "androidx.lifecycle:life", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

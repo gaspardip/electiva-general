@@ -12,8 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mascotas"
         >
+        <activity android:name=".view.AddPet" />
+        <activity android:name=".view.LayoutSample" />
+        <!-- To add activity: <activity android:name=".view.YourActivity" /> -->
+
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,5 +26,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
