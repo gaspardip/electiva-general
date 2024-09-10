@@ -14,6 +14,7 @@
         >
         <activity android:name=".view.AddPet" />
         <activity android:name=".view.LayoutSample" />
+        <activity android:name=".view.DetailPet" />
         <!-- To add activity: <activity android:name=".view.YourActivity" /> -->
 
         <activity

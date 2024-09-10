@@ -1,39 +1,42 @@
 package com.um.mascotas.view.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.um.mascotas.R
+import com.um.mascotas.databinding.ListItemBinding
 import com.um.mascotas.model.PetModel
-import com.um.mascotas.viewmodel.PetViewModel
 
-class ListItemAdapter(private val petViewModel: PetViewModel, private val items: List<PetModel>) :
-    RecyclerView.Adapter<ListItemAdapter.CardViewHolder>() {
+// Adapter con un clickListener para manejar la selección de un ítem
+class ListItemAdapter(
+    private val petList: List<PetModel>,
+    private val clickListener: (PetModel) -> Unit
+) : RecyclerView.Adapter<ListItemAdapter.PetViewHolder>() {
 
-    class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name: TextView = itemView.findViewById(R.id.name)
-        val description: TextView = itemView.findViewById(R.id.description)
-        val age: TextView = itemView.findViewById(R.id.age)
-    }
+    // ViewHolder para manejar las vistas de cada elemento
+    class PetViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(pet: PetModel, clickListener: (PetModel) -> Unit) {
+            // Asigna los datos de la mascota a las vistas
+            binding.name.text = pet.name
+            binding.description.text = pet.description
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item, parent, false)
-
-        view.setOnClickListener{
-            petViewModel.addRandomPet()
+            // Añadir listener para cuando se haga clic en un ítem
+            itemView.setOnClickListener {
+                clickListener(pet)
+            }
         }
-        return CardViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        val item = items[position]
-        holder.name.text = item.name
-        holder.description.text = item.description
-        holder.age.text = item.age
+    // Crea las vistas para cada elemento en el RecyclerView
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
+        val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return PetViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = items.size
+    // Vincula los datos de la mascota a las vistas
+    override fun onBindViewHolder(holder: PetViewHolder, position: Int) {
+        holder.bind(petList[position], clickListener)
+    }
+
+    // Retorna la cantidad de ítems en la lista
+    override fun getItemCount(): Int = petList.size
 }
