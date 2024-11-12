@@ -1,3 +1,50 @@
 <resources>
     <string name="app_name">Mascotas</string>
+    <string name="default_web_client_id">884592468648-ijl0pst8aa493vr9jc4a2b0a9g3ip3b7.apps.googleusercontent.com</string>
+
+    <string name="species_dog">Perro</string>
+    <string name="species_cat">Gato</string>
+
+    <string name="gender_male">Macho</string>
+    <string name="gender_female">Hembra</string>
+
+    <string name="hair_short">Corto</string>
+    <string name="hair_medium">Mediano</string>
+    <string name="hair_long">Largo</string>
+
+    <string name="user_type_donor">Donante</string>
+    <string name="user_type_adopter">Adoptante</string>
+
+    <string name="filter_species">Especie</string>
+    <string name="filter_gender">Género</string>
+    <string name="filter_hair">Pelo</string>
+    <string name="filter_breed">Raza</string>
+    <string name="filter_age_range">Edad</string>
+    <string name="filter_only_own_pets">Solo mascotas propias</string>
+    <string name="filter_clear">Limpiar filtros</string>
+    <string name="filter_all">%1$s: todos</string>
+    <string name="years">años</string>
+    <string name="clear_text">Limpiar</string>
+
+    <string name="welcome">Bienvenido</string>
+
+    <string name="add_pet">Agregar mascota</string>
+    <string name="add_new_pet">Agregar nueva mascota</string>"
+    <string name="edit_pet">Editar mascota</string>
+    <string name="delete_pet">Eliminar mascota</string>
+    <string name="save_pet">Guardar mascota</string>
+
+    <string name="add_pet_title">Agregar Animal</string>
+    <string name="name">Nombre</string>
+    <string name="species">Especie</string>
+    <string name="breed">Raza</string>
+    <string name="age">Edad</string>
+    <string name="gender">Género</string>
+    <string name="hair">Pelo</string>
+    <string name="description">Descripción</string>
+    <string name="select_photo">Seleccionar Foto</string>
+    <string name="change_photo">Cambiar Foto</string>
+    <string name="selected_photo">Foto Seleccionada</string>
+    <string name="uploading">Subiendo...</string>
+    <string name="back">Atrás</string>
 </resources>
